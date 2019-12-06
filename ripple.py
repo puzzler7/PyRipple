@@ -18,9 +18,11 @@ class Ripple:
         self.y = y
         
     def distFromCenter(self, x, y):
-        dx = self.x - y
+        dx = self.x - x
         dy = self.y - y
         return (dx*dx+dy*dy)**.5
         
     def height (self, x, y, t) :
-        return self.A * m.sin(self.v*self.distFromCenter(x, y)*t)
+        #return self.A * m.sin(.05*x+t)
+        return self.A * m.sin(0.1*(self.distFromCenter(x, y)-5*t))
+        #return self.A * m.sin(self.v*self.distFromCenter(x, y)*t)
