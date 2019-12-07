@@ -12,12 +12,13 @@ class Ripple:
     y = 0
     A = 1
     rings = []
-    def __init__(self, x, y, freq = 10, wavelen = .1) :
+    def __init__(self, x, y, start, freq = 10, wavelen = .1) :
         self.x = x
         self.y = y
         self.freq = freq
         self.wl = wavelen
         self.v = (m.pi/freq/wavelen)**2
+        self.start = start
         
     def distFromCenter(self, x, y):
         dx = self.x - x
@@ -26,7 +27,7 @@ class Ripple:
         
     def height (self, x, y, t) :
         dist = self.distFromCenter(x, y)
-        if (dist > t*self.v):
+        if (dist > (t-self.start)*self.v):
             return 0
         return self.A * m.sin(self.wl*(dist-self.freq*t))
         #return self.A * m.sin(self.v*self.distFromCenter(x, y)*t)
